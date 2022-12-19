@@ -1,0 +1,17 @@
+language: generic 
+
+sudo: required
+services:
+  - docker
+
+before_install: 
+  - docker build -t pgavigan/react-test -f ./client/Docerfile.dev ./client
+
+script:
+  - docker run -e CI=true pgavigan/react-test npm test
+
+after_success:
+  - docker build -t pgavigan/multi-client ./client
+  - docker build -t pgavigan/multi-nginx ./nginx
+  - docker build -t pgavigan/multi-server ./server
+  - docker build -t pgavigan/multi-worker ./worker
