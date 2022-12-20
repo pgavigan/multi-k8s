@@ -13,15 +13,15 @@ jobs:
       - run: docker build -t pgavigan/react-test -f ./client/Dockerfile.dev ./client
       - run: docker run -e CI=true pgavigan/react-test npm test
  
-      - run: docker build -t pgavigan/multi-client-10-14 ./client
-      - run: docker build -t pgavigan/multi-nginx-10-14 ./nginx
-      - run: docker build -t pgavigan/multi-server-10-14 ./server
-      - run: docker build -t pgavigan/multi-worker-10-14 ./worker
+      - run: docker build -t pgavigan/multi-client ./client
+      - run: docker build -t pgavigan/multi-nginx ./nginx
+      - run: docker build -t pgavigan/multi-server ./server
+      - run: docker build -t pgavigan/multi-worker ./worker
  
-      - run: docker push pgavigan/multi-client-10-14
-      - run: docker push pgavigan/multi-nginx-10-14
-      - run: docker push pgavigan/multi-server-10-14
-      - run: docker push pgavigan/multi-worker-10-14
+      - run: docker push pgavigan/multi-client
+      - run: docker push pgavigan/multi-nginx
+      - run: docker push pgavigan/multi-server
+      - run: docker push pgavigan/multi-worker
  
       - name: Generate deployment package
         run: zip -r deploy.zip . -x '*.git*'
