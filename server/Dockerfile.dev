@@ -1,8 +1,6 @@
-FROM node:14.4.0-alpine
-USER node
+FROM node:14.14.0-alpine
 WORKDIR "/app"
 COPY ./package.json ./
 RUN npm install
 COPY . .
-COPY --chown=node:node ./ ./
 CMD ["npm", "run", "dev"]
